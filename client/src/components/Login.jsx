@@ -46,8 +46,8 @@ const Login = () => {
         window.alert("Internal server error");
       }
       window.alert("Login Successfull")
-      navigate('/secret-page')
-      // window.open(`${base_url}/secret-page`,`_self`);
+      // navigate('/secret-page')
+      window.open(`${base_url}/secret-page`,`_self`);
 
     }
   }

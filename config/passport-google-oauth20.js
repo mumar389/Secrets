@@ -6,7 +6,7 @@ const User=require('../models/user');
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret:process.env.CLIENT_SECRET,
-    callbackURL: "https://secrets-web.vercel.app/api/v1/auth/google/google-home"
+    callbackURL: "https://secrets-web.netlify.app/api/v1/auth/google/google-home"
   },
   function(accessToken, refreshToken, profile, cb) {
     User.findOne({ email: profile.emails[0].value }, function (err, user) {
