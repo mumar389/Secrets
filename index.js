@@ -10,9 +10,9 @@ const LocalStrategy=require('./config/passport-local');
 const path = require('path');
 const app=express();
 
-// if(process.env.MODE=='production'){
-//   app.use(express.static(path.resolve(__dirname,'client','build')))
-// }
+if(process.env.MODE=='production'){
+  app.use(express.static(path.resolve(__dirname,'client','build')))
+}
 const cors = require('cors');
 app.use(cors())
 
