@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink,useNavigate } from "react-router-dom";
-import {base_url,back_url} from '../url';
+import {base_url} from '../url';
 import {useCookies} from 'react-cookie';
 
 const Login = () => {
@@ -55,7 +55,7 @@ const Login = () => {
   const googleAuth=async(e)=>{
     try {
       e.preventDefault();
-      window.open(`${back_url}/api/v1/auth/google`,'_self')
+      window.open(`${base_url}/api/v1/auth/google`,'_self')
       
     } catch (error) {
       console.log("error--:",error)

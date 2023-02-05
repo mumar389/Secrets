@@ -95,7 +95,8 @@ module.exports.secretPage=async(req,res)=>{
 module.exports.googleHome=async (req,res)=>{
     let token=jwt.sign(req.user.toJSON(),process.env.SECRET,{expiresIn:'1000000'});
     res.cookie('jwt', token);
-    return res.redirect('http://localhost:3000/secret-page')
+    // return res.redirect('http://localhost:3000/secret-page')
+    return res.redirect('https://secrets-web.vercel.app/secret-page')
 
 }
 module.exports.logout=async (req,res)=>{
