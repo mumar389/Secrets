@@ -37,7 +37,7 @@ const Login = () => {
     if(!(res.status===200)){
       console.log("Error in signing in");
       window.alert("Invalid username or password")
-      // navigate(`${}/sign-in`);
+      // navigate(`/sign-in`);
       window.open(`${base_url}/sign-in`,`_self`);
     }else{
       const data=await res.json();
