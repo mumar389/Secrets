@@ -1,7 +1,7 @@
 import React from 'react'
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
-import {base_url} from '../url';
+// import {base_url} from '../url';
 
 const Fetched = (props) => {
   const navigate=useNavigate();
@@ -20,7 +20,8 @@ const Fetched = (props) => {
       navigate('/secret-page')
     }else{
       window.alert("Deleted Sucess");
-      window.open(`${base_url}/secret-page`,'_self')
+      navigate('/secret-page');
+      // window.open(`${base_url}/secret-page`,'_self')
     }
   }
   return (

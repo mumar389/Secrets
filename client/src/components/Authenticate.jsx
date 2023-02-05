@@ -1,11 +1,11 @@
 import React,{useEffect} from 'react'
-// import {useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {useCookies} from 'react-cookie';
-import {base_url} from '../url';
+// import {base_url} from '../url';
 
 const Authenticate = (props) => {
     const [cookies]=useCookies();
-    // const navigate=useNavigate();
+    const navigate=useNavigate();
 const setUser=async ()=>{
     const res=await fetch(`/api/v1/verify-user`,{
         method:"GET",
@@ -16,8 +16,8 @@ const setUser=async ()=>{
     });
     if(!(res.status===200)){
         console.log("Unauthorized Access");
-        // navigate('/sign-in')
-        window.open(`${base_url}/sign-in`,'_self')
+        navigate('/sign-in')
+        // window.open(`${base_url}/sign-in`,'_self')
     }
     else{
         const response=await res.json();
