@@ -1,14 +1,14 @@
 import React from 'react';
-import Navbar from './Navbar';
-import Home from './Home';
-import Login from './Login';
-import Secret from './Secret';
-import Form from './Form';
-import Register from './Register';
-import About from './About';
-import Contact from './Contact';
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import Login from './components/Login';
+import Secret from './components/Secret';
+import Form from './components/Form';
+import Register from './components/Register';
+import About from './components/About';
+import Contact from './components/Contact';
 import {Route,Routes,BrowserRouter} from "react-router-dom";
-import Logout from './Logout';
+import Logout from './components/Logout';
 function App() {
  
   return (

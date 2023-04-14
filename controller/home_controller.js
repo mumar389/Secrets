@@ -1,6 +1,5 @@
 //for production mode only
-const path=require('path')
-module.exports.getHome=async(req,res)=>{
-    return res.sendFile(path.resolve(__dirname,'client','build','index.html'))
-    // return res.send('Hello')
-}
+const path = require("path");
+module.exports.getHome = async (req, res) => {
+  return res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+};
