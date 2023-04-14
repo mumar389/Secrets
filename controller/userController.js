@@ -98,8 +98,6 @@ module.exports.googleHome = async (req, res) => {
     expiresIn: "1000000",
   });
   res.cookie("jwt", token);
-  // return res.redirect('http://localhost:3000/secret-page')
-  // return res.redirect('https://secrets-web.vercel.app/')
   if (process.env.MODE === "production")
     return res.sendFile(
       path.resolve(__dirname,'..', "client", "build", "index.html")
