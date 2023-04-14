@@ -1,4 +1,3 @@
-// const base_url="https://secrets-web.vercel.app";
 const base_url = "https://secrets-web.vercel.app/";
 const back_url = "http://localhost:5620";
 
