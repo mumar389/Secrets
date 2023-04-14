@@ -8,7 +8,7 @@ passport.use(
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
       callbackURL:
-        "https://secrets-web.vercel.app/api/v1/auth/google/google-home",
+        "https://secrets-mrop.onrender.com/api/v1/auth/google/google-home",
     },
     function (accessToken, refreshToken, profile, cb) {
       User.findOne({ email: profile.emails[0].value }, function (err, user) {
