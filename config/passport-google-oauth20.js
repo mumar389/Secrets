@@ -1,42 +1,46 @@
-const passport=require('passport');
-const GoogleStrategy=require('passport-google-oauth20').Strategy;
-const User=require('../models/user');
+const passport = require("passport");
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const User = require("../models/user");
 
-
-passport.use(new GoogleStrategy({
-    clientID: process.env.CLIENT_ID,
-    clientSecret:process.env.CLIENT_SECRET,
-    callbackURL: "https://secrets-web.netlify.app/api/v1/auth/google/google-home"
-  },
-  function(accessToken, refreshToken, profile, cb) {
-    User.findOne({ email: profile.emails[0].value }, function (err, user) {
-        if(err){
-            console.log("Error in passport-google");
-            return cb(err);
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.CLIENT_ID,
+      clientSecret: process.env.CLIENT_SECRET,
+      callbackURL:
+        "https://secrets-web.vercel.app/api/v1/auth/google/google-home",
+    },
+    function (accessToken, refreshToken, profile, cb) {
+      User.findOne({ email: profile.emails[0].value }, function (err, user) {
+        if (err) {
+          console.log("Error in passport-google");
+          return cb(err);
         }
-        if(!user){
-            User.create({
-                email:profile.emails[0].value,
-                name:profile.displayName,
-                googleId:profile.id
-            },function(err,users){
-                if(err){
-                    console.log("Error in passport-google");
-                    return cb(err);
-                }
-                console.log("Google Successfully created user");
-                return cb(null, users);
-            })
+        if (!user) {
+          User.create(
+            {
+              email: profile.emails[0].value,
+              name: profile.displayName,
+              googleId: profile.id,
+            },
+            function (err, users) {
+              if (err) {
+                console.log("Error in passport-google");
+                return cb(err);
+              }
+              console.log("Google Successfully created user");
+              return cb(null, users);
+            }
+          );
+        } else {
+          // console.log(user);
+          // console.log("User already exists");
+          return cb(null, user);
         }
-        else{
-            // console.log(user);
-            // console.log("User already exists");
-            return cb(null,user);
-        }
-   
-    });
-  }
-));
+      });
+    }
+  )
+);
 // passport.serializeUser(function(user,done){
 //     done(null,user.id);
 // })
@@ -50,4 +54,4 @@ passport.use(new GoogleStrategy({
 //     return done(null,users);
 // })
 // });
-module.exports=passport;
+module.exports = passport;
