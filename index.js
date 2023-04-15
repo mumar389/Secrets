@@ -29,12 +29,12 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-app.use("/", require("./routes/index"));
+app.use("/api", require("./routes/api/index"));
 
 if (process.env.MODE === "production") {
   //serving all the statick files like main.js,main.css-:
   app.use(express.static("/client/build"));
- 
+
   //express will serve up the index.html file if routes doesnot match-:
 
   app.get("*", (req, res) => {
