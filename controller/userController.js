@@ -70,7 +70,7 @@ module.exports.createSession = async (req, res) => {
             message: "Inavlid username or password",
           });
         } else {
-          let token = jwt.sign(findAdmin.toJSON(), `${process.env.SECRET}`, {
+          let token = jwt.sign(allUsers.toJSON(), `${process.env.SECRET}`, {
             expiresIn: "10000000",
           });
           res.cookie("jwt", token);
