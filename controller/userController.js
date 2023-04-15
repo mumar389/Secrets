@@ -50,8 +50,9 @@ module.exports.createSession = async (req, res) => {
         message: "Fields cannot be empty",
       });
     }
+    console.log("Email",email);
     let allUsers = await User.findOne({ email });
-
+    console.log("cu",allUsers);
     if (!allUsers) {
       console.log("Cannot find user");
       return res.status(422).json({
