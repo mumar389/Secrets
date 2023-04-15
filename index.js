@@ -31,7 +31,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use("/", require("./routes/index"));
 
-if (process.env.MODE === "production") {
+if (process.env.MODE == "production") {
   //serving all the statick files like main.js,main.css-:
   app.use(express.static("./client/build"));
 
