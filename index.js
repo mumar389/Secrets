@@ -29,6 +29,8 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use("/api", require("./routes/api/index"));
+
 if (process.env.MODE == "production") {
   //serving all the statick files like main.js,main.css-:
   app.use(express.static(path.resolve(__dirname, "client", "build")));
@@ -39,7 +41,6 @@ if (process.env.MODE == "production") {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
-app.use("/", require("./routes/index"));
 
 app.listen(port, function () {
   console.log(`Server is running on port-:${port}`);

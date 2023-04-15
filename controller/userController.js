@@ -50,9 +50,9 @@ module.exports.createSession = async (req, res) => {
         message: "Fields cannot be empty",
       });
     }
-    console.log("Email",email);
+    // console.log("Email",email);
     let allUsers = await User.findOne({ email });
-    console.log("cu",allUsers);
+    // console.log("cu",allUsers);
     if (!allUsers) {
       console.log("Cannot find user");
       return res.status(422).json({
@@ -91,28 +91,21 @@ module.exports.createSession = async (req, res) => {
 //Authenticated Route
 
 module.exports.verifyUser = async (req, res) => {
+  console.log(req.user);
   return res.status(200).json({
     message: "User authorized",
-    data:req.user
+    data: req.user,
   });
 };
 
-module.exports.signIn = async (req, res) => {
-  // return res.redirect("https://secrets-weld.vercel.app/sign-in")
-};
-module.exports.secretPage = async (req, res) => {
-  // return res.redirect("https://secrets-weld.vercel.app/secret-page")
-};
-
 module.exports.googleHome = async (req, res) => {
+  console.log("Inside google");
   let token = jwt.sign(req.user.toJSON(), process.env.SECRET, {
     expiresIn: "1000000",
   });
   res.cookie("jwt", token);
   if (process.env.MODE === "production")
-    return res.sendFile(
-      path.resolve(__dirname, "..", "client", "build", "index.html")
-    );
+    return res.redirect("https://secrets-web.vercel.app/secret-page");
   else {
     return res.redirect("http://localhost:3000/secret-page");
   }
