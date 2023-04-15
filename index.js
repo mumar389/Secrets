@@ -29,7 +29,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-app.use("/api", require("./routes/api/index"));
+app.use("/", require("./routes/index"));
 
 if (process.env.MODE === "production") {
   //serving all the statick files like main.js,main.css-:
