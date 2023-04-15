@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { NavLink} from 'react-router-dom';
-import Authenticate  from './Authenticate';
 import Fetched from './Fetched';
 // import {base_url} from '../url';
-const Secret = () => {
+const Secret = (props) => {
+  const {user}=props
   const [cookies]=useCookies();
-  const [user,setUser]=useState({
-    name:'',
-    email:"",
-    id:''
-  });
+  // const [user,setUser]=useState({
+  //   name:'',
+  //   email:"",
+  //   id:''
+  // });
   // "proxy": "https://secrets-weld.vercel.app",
 
- async function AuthUser(data){
-  setUser({
-    name:data.name,
-    email:data.email,
-    id:data._id
-  })
-  // console.log("Parent",data);
-  }
+//  async function AuthUser(data){
+//   setUser({
+//     name:data.name,
+//     email:data.email,
+//     id:data._id
+//   })
+//   // console.log("Parent",data);
+//   }
   const [secrets,setSecret]=useState([]);
   const getSecret=async (e)=>{
     const res=await fetch(`/api/v1/secret/get-secret`,{
@@ -52,7 +52,6 @@ const Secret = () => {
   },[])
   return (
     <>
-    <Authenticate onLogin={AuthUser}/>
     <div className="jumbotron text-center">
     <div className="container">
     <i className="fas fa-key fa-6x"></i>

@@ -8,7 +8,8 @@ import Register from "./components/Register";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import Logout from "./components/Logout";
+// import Logout from "./components/Logout";
+import Protected from "./components/Protected";
 function App() {
   return (
     <div className="App">
@@ -17,12 +18,16 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/sign-in" element={<Login />} />
-          <Route exact path="/secret-page" element={<Secret />} />
-          <Route exact path="/secret-form" element={<Form />} />
+          <Route
+            exact
+            path="/secret-page"
+            element={<Protected Component={Secret} />}
+          />
+          <Route exact path="/secret-form" element={<Protected Component={Form} />} />
           <Route exact path="/sign-up" element={<Register />} />
           <Route exact path="/about" element={<About />} />
           <Route exact path="/contact" element={<Contact />} />
-          <Route exact path="/log-out" element={<Logout />} />
+          {/* <Route exact path="/log-out" element={<Logout />} /> */}
         </Routes>
       </BrowserRouter>
     </div>

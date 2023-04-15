@@ -44,34 +44,41 @@ module.exports.create = async (req, res) => {
 
 module.exports.createSession = async (req, res) => {
   try {
-    let allUsers = await User.findOne({ email: req.body.email });
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(301).json({
+        message: "Fields cannot be empty",
+      });
+    }
+    let allUsers = await User.findOne({ email });
 
     if (!allUsers) {
       console.log("Cannot find user");
       return res.status(422).json({
-        message: "Unauthorized access",
+        message: "No user found with this email",
       });
     } else {
-      bcrypt
-        .compare(req.body.password, allUsers.password)
-        .then(function (result) {
-          // result == true
-          if (result) {
-            // console.log("Inside true");
-            let token = jwt.sign(allUsers.toJSON(), process.env.SECRET, {
-              expiresIn: "10000000",
-            });
-            res.cookie("jwt", token);
-            return res.status(200).json({
-              message: "Signin Successfull",
-            });
-          } else {
-            console.log("Invalid username or password");
-            return res.status(401).json({
-              message: "Invalid username or password",
-            });
-          }
-        });
+      bcrypt.compare(password, allUsers.password, async (err, result) => {
+        if (err) {
+          return res.status(301).json({
+            message: "Error in matching password with bcrypt",
+          });
+        }
+        if (!result) {
+          return res.status(301).json({
+            message: "Inavlid username or password",
+          });
+        } else {
+          let token = jwt.sign(findAdmin.toJSON(), `${process.env.SECRET}`, {
+            expiresIn: "10000000",
+          });
+          res.cookie("jwt", token);
+          return res.status(200).json({
+            message: "Login successfull",
+            data: token,
+          });
+        }
+      });
     }
   } catch (error) {
     console.log("Error", error);
@@ -83,7 +90,10 @@ module.exports.createSession = async (req, res) => {
 //Authenticated Route
 
 module.exports.verifyUser = async (req, res) => {
-  return res.status(200).send(req.user);
+  return res.status(200).json({
+    message: "User authorized",
+    data:req.user
+  });
 };
 
 module.exports.signIn = async (req, res) => {
@@ -100,7 +110,7 @@ module.exports.googleHome = async (req, res) => {
   res.cookie("jwt", token);
   if (process.env.MODE === "production")
     return res.sendFile(
-      path.resolve(__dirname,'..', "client", "build", "index.html")
+      path.resolve(__dirname, "..", "client", "build", "index.html")
     );
   else {
     return res.redirect("http://localhost:3000/secret-page");
