@@ -33,7 +33,7 @@ app.use("/", require("./routes/index"));
 
 if (process.env.MODE === "production") {
   //serving all the statick files like main.js,main.css-:
-  app.use(express.static("/client/build"));
+  app.use(express.static("./client/build"));
 
   //express will serve up the index.html file if routes doesnot match-:
 
