@@ -25,7 +25,7 @@ const Protected = (props) => {
       const resp=await res.json();
       const {data}=resp;
       console.log(data);
-      setUser({data})
+      setUser(data)
     }
   };
   useEffect(() => {
@@ -37,6 +37,7 @@ const Protected = (props) => {
   }, []);
   return (
     <>
+    {console.log("front se",user)}
       <Component  user={user}/>
     </>
   );
