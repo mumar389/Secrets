@@ -34,15 +34,12 @@ if (process.env.MODE == "production") {
   app.use(express.static("./client/build"));
 
   //express will serve up the index.html file if routes doesnot match-:
-  app.get("/", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
   app.get("*", (req, res) => {
     // console.log("Inside me");
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
-app.use("/api", require("./routes/api/index"));
+app.use("/", require("./routes/index"));
 
 app.listen(port, function () {
   console.log(`Server is running on port-:${port}`);
