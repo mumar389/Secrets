@@ -29,8 +29,6 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-app.use("/", require("./routes/index"));
-
 if (process.env.MODE == "production") {
   //serving all the statick files like main.js,main.css-:
   app.use(express.static("./client/build"));
@@ -38,9 +36,11 @@ if (process.env.MODE == "production") {
   //express will serve up the index.html file if routes doesnot match-:
 
   app.get("*", (req, res) => {
+    console.log("Inside me");
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
+app.use("/api", require("./routes/api/index"));
 
 app.listen(port, function () {
   console.log(`Server is running on port-:${port}`);
