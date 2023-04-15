@@ -37,7 +37,7 @@ const Protected = (props) => {
   }, []);
   return (
     <>
-    {console.log("front se",user)}
+    {console.log("front se",user.id)}
       <Component  user={user}/>
     </>
   );

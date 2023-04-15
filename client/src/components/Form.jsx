@@ -2,24 +2,12 @@ import React, { useState } from "react";
 // import Authenticate  from './Authenticate';
 import { useNavigate, NavLink } from "react-router-dom";
 import { useCookies } from "react-cookie";
-
+import { base_url } from "../url";
 const Form = (props) => {
   const { user } = props;
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [cookies] = useCookies();
-  // const [user,setUser]=useState({
-  //     name:'',
-  //     email:"",
-  //     id:''
-  //   });
-  //  async function AuthUser(data){
-  //   // console.log(data);
-  //   setUser({
-  //       name:data.name,
-  //       email:data.email,
-  //       id:data._id
-  //     })
-  //   }
+
 
   const [secret, setSecret] = useState({
     title: "",
@@ -56,7 +44,8 @@ const Form = (props) => {
       const response = await res.json();
       console.log(response);
       window.alert("Secret Saved Anonimously");
-      navigate("/secret-page");
+      // navigate("/secret-page");
+      window.open(`${base_url}/secret-page`)
     }
   };
   return (

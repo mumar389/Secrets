@@ -50,7 +50,19 @@ const Secret = (props) => {
                   {secrets === null
                     ? "No secret available"
                     : 
-                     console.log("Found-:",secrets)
+                     secrets[0].map((u)=>{
+                      return (
+                            <Fetched
+                              key={u._id}
+                              uid={u._id}
+                              title={u.title}
+                              content={u.content}
+                              name={u.user.name}
+                              currentId={user.id}
+                              createId={u.user._id}
+                            />
+                          );
+                     })
                       }
                 </>
               )}
