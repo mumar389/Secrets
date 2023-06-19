@@ -11,7 +11,7 @@ router.get('/verify-user',passport.authenticate('jwt', { session: false }),userC
 router.get('/sign-out',passport.authenticate('jwt', { session: false }),userControl.logout)
 router.get('/auth/google',
 passport.authenticate('google', { scope: ['profile','email'] }));
-router.get('/auth/google/google-home',passport.authenticate('google',{
+router.get('/auth/google/google-home',passport.authenticate('google',{session: false,
     failureRedirect:'https://secrets-mrop.onrender.com/'}),userControl.googleHome);
 router.use('/secret',require('./secret'));
 //handling feedback submit-:
