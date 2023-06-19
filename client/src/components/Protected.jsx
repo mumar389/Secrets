@@ -7,7 +7,11 @@ const Protected = (props) => {
   const { Component } = props;
   const navigate = useNavigate();
   const [cookie] = useCookies();
-  const [user,setUser]=useState()
+  const [user,setUser]=useState({
+    _id: "",
+    name:"",
+    email: ""
+  })
   const adminLogin = async (data) => {
     const res = await fetch("/api/v1/verify-user", {
       method: "GET",
@@ -23,9 +27,14 @@ const Protected = (props) => {
     } else {
       // console.log("Admin verified sucessfully");
       const resp=await res.json();
+      console.log("Resp-:",resp);
       const {data}=resp;
       console.log("Yha-:",data);
-      setUser(data)
+      setUser({
+        _id:data._id,
+        name:data.name,
+        email:data.email
+      })
     }
   };
   useEffect(() => {
