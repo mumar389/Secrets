@@ -55,7 +55,7 @@ const Navbar = () => {
                     </NavLink>
                   </li>
                   <button
-                    className="nav-link active"
+                    className="nav-link "
                     aria-current="page"
                     onClick={handleLogout}
                   >

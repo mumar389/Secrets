@@ -113,7 +113,6 @@ module.exports.googleHome = async (req, res) => {
 };
 module.exports.logout = async (req, res) => {
   try {
-    res.clearCookie("jwt");
     req.logout(async () => {
       /*
       if (err) {
@@ -129,6 +128,12 @@ module.exports.logout = async (req, res) => {
         });
       }
       */
+      res.cookie('jwt', 'none', {
+        expires: new Date(Date.now() + 5 * 1000),
+        httpOnly: true,
+    })
+    res.clearCookie("jwt");
+    console.log("Logout Done");
       return res.status(200).json({
         message: "Logout sucess",
       });
