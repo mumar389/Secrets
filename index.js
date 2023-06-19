@@ -19,15 +19,12 @@ app.use(cors());
 
 app.use(express.json());
 
-app.use(
-  session({
-    secret: process.env.SECRET,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true },
-  })
-);
-app.use(passport.initialize());
+app.use(session({
+  secret: `${process.env.SECRET}`,
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}));e(passport.initialize());
 app.use(passport.session());
 app.use("/api", require("./routes/api/index"));
 
