@@ -27,9 +27,8 @@ const Protected = (props) => {
     } else {
       // console.log("Admin verified sucessfully");
       const resp=await res.json();
-      console.log("Resp-:",resp);
       const {data}=resp;
-      console.log("Yha-:",data);
+      // console.log("Yha-:",data);
       setUser({
         _id:data._id,
         name:data.name,
@@ -46,7 +45,6 @@ const Protected = (props) => {
   }, []);
   return (
     <>
-    {console.log("User set ho gya-:",user)}
       <Component  user={user}/>
     </>
   );
