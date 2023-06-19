@@ -99,8 +99,8 @@ module.exports.verifyUser = async (req, res) => {
 };
 
 module.exports.googleHome = async (req, res) => {
-  console.log("Inside google");
-  let token = jwt.sign(allUsers.toJSON(), `${process.env.SECRET}`, {
+  console.log("Inside google",req.user);
+  let token = jwt.sign(req.user.toJSON(), `${process.env.SECRET}`, {
     expiresIn: "10000000",
   });
   res.cookie("jwt", token);
