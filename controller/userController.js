@@ -51,7 +51,7 @@ module.exports.createSession = async (req, res) => {
       });
     }
     // console.log("Email",email);
-    let allUsers = await User.findOne({ email });
+    let allUsers = await User.findOne({ email:email });
     // console.log("cu",allUsers);
     if (!allUsers) {
       console.log("Cannot find user");

@@ -5,6 +5,7 @@ import Fetched from "./Fetched";
 // import {base_url} from '../url';
 const Secret = (props) => {
   const { user } = props;
+  console.log("Props me-:",user);
   const [cookies] = useCookies();
   const [secrets, setSecret] = useState([]);
   const [loading, setloading] = useState(true);
