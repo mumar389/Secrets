@@ -4,10 +4,16 @@ const Secret=require('../models/secret');
 module.exports.create=async (req,res)=>{
     try{
         // console.log("Secrets",req.body);
+        const {title,content}=req.body
+        if(!title || !content ){
+            return res.status(301).json({
+                message:"Fields cannot be empty"
+            })
+        }
         let newSecret=await Secret.create({
-        title:req.body.title,
-        content:req.body.content,
-        user:req.body.user
+        title:title,
+        content:content,
+        user:req.user
     });
     if(!newSecret){
         console.log("Unable to create Secret");
