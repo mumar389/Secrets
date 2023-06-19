@@ -45,7 +45,7 @@ const Form = (props) => {
       console.log(response);
       window.alert("Secret Saved Anonimously");
       // navigate("/secret-page");
-      window.open(`${base_url}/secret-page`)
+      window.open(`${base_url}/secret-page`,`_self`)
     }
   };
   return (

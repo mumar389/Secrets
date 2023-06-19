@@ -43,8 +43,6 @@ const Login = () => {
         email: "",
         password: "",
       });
-      // navigate(`/sign-in`);
-      // window.open(`${base_url}/sign-in`,`_self`);
     } else if (res.status === 200) {
       const data = await res.json();
       if (!data) {

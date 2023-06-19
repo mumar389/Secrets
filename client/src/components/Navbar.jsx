@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import { base_url } from "../url";
+// import { base_url } from "../url";
 const Navbar = () => {
   const [cookies] = useCookies();
   const navigate = useNavigate();
@@ -19,7 +19,8 @@ const Navbar = () => {
       navigate("/");
     } else {
       window.alert("Logout Sucessfull");
-      window.open(`${base_url}/sign-in`, "_self");
+      // window.open(`${base_url}/sign-in`, "_self");
+      navigate("/");
     }
   };
   return (
