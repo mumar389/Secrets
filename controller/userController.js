@@ -51,7 +51,7 @@ module.exports.createSession = async (req, res) => {
       });
     }
     // console.log("Email",email);
-    let allUsers = await User.findOne({ email:email });
+    let allUsers = await User.findOne({ email: email });
     // console.log("cu",allUsers);
     if (!allUsers) {
       console.log("Cannot find user");
@@ -91,7 +91,7 @@ module.exports.createSession = async (req, res) => {
 //Authenticated Route
 
 module.exports.verifyUser = async (req, res) => {
-  console.log(req.user);
+  // console.log(req.user);
   return res.status(200).json({
     message: "User authorized",
     data: req.user,
@@ -99,24 +99,38 @@ module.exports.verifyUser = async (req, res) => {
 };
 
 module.exports.googleHome = async (req, res) => {
-  console.log("Inside google",req.user);
+  // console.log("Inside google",req.user);
   let token = jwt.sign(req.user.toJSON(), `${process.env.SECRET}`, {
     expiresIn: "10000000",
   });
   res.cookie("jwt", token);
   // if (process.env.MODE === "production")
-    // return res.redirect("https://secrets-web.vercel.app/secret-page");
-    return res.redirect("/");
+  // return res.redirect("https://secrets-web.vercel.app/secret-page");
+  return res.redirect("/");
   // else {
-    // return res.redirect("http://localhost:3000/secret-page");
+  // return res.redirect("http://localhost:3000/secret-page");
   // }
 };
 module.exports.logout = async (req, res) => {
-  res.clearCookie("jwt");
-
-  return res.status(200).json({
-    message: "Logout Successs",
-  });
+  try {
+    req.logout(async (err, users) => {
+      if (err) {
+        return res.status(501).json({
+          message: "Failed to logout",
+        });
+      } else {
+        res.clearCookie("jwt");
+        return res.status(200).json({
+          message: "Logout sucess",
+        });
+      }
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(200).json({
+      message: "Logout sucess",
+    });
+  }
 };
 
 //Saving users Feedback
