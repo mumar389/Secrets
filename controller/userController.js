@@ -100,15 +100,16 @@ module.exports.verifyUser = async (req, res) => {
 
 module.exports.googleHome = async (req, res) => {
   console.log("Inside google");
-  let token = jwt.sign(req.user.toJSON(), process.env.SECRET, {
-    expiresIn: "1000000",
+  let token = jwt.sign(allUsers.toJSON(), `${process.env.SECRET}`, {
+    expiresIn: "10000000",
   });
   res.cookie("jwt", token);
-  if (process.env.MODE === "production")
-    return res.redirect("https://secrets-web.vercel.app/secret-page");
-  else {
-    return res.redirect("http://localhost:3000/secret-page");
-  }
+  // if (process.env.MODE === "production")
+    // return res.redirect("https://secrets-web.vercel.app/secret-page");
+    return res.redirect("/");
+  // else {
+    // return res.redirect("http://localhost:3000/secret-page");
+  // }
 };
 module.exports.logout = async (req, res) => {
   res.clearCookie("jwt");
