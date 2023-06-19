@@ -24,7 +24,8 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   cookie: { secure: true }
-}));e(passport.initialize());
+}));
+app.use(passport.initialize());
 app.use(passport.session());
 app.use("/api", require("./routes/api/index"));
 
