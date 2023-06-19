@@ -12,7 +12,7 @@ const Protected = (props) => {
     name:"",
     email: ""
   })
-  const adminLogin = async (data) => {
+  const adminLogin = async () => {
     const res = await fetch("/api/v1/verify-user", {
       method: "GET",
       headers: {
