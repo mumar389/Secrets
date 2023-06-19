@@ -129,8 +129,8 @@ module.exports.logout = async (req, res) => {
       }
       */
       res.cookie('jwt', 'none', {
-        expires: new Date(Date.now() + 5 * 1000),
-        httpOnly: true,
+        expires: new Date(Date.now() + 5 * 100),
+        httpOnly: false,
     })
     res.clearCookie("jwt");
     console.log("Logout Done");
