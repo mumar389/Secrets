@@ -37,6 +37,7 @@ const Protected = (props) => {
   }, []);
   return (
     <>
+    {console.log("User set ho gya-:",user)}
       <Component  user={user}/>
     </>
   );
