@@ -123,11 +123,13 @@ module.exports.logout = async (req, res) => {
       // res.clearCookie("jwt");
       // res.clearCookie('jwt');
       // res.cookie('jwt' , '', {expire : new Date() + 100});
-      req.logout()
-      console.log("Logout Done",req.cookies);
-      return res.status(200).json({
-        message: "Logout sucess",
-      });
+      req.logout(function(){
+        console.log("Logout Done",req.cookies);
+        return res.status(200).json({
+          message: "Logout sucess",
+        });
+
+      })
     // }
     // });
   } catch (error) {
