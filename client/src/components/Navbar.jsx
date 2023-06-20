@@ -7,12 +7,6 @@ const Navbar = () => {
   const navigate = useNavigate();
   const handleLogout = async (e) => {
     e.preventDefault();
-    // cookies.remove('jwt', {
-    //   path: '/',
-    // });
-      // window.open(`/`, "_self");
-    
-    
     const res = await fetch(`/api/v1/sign-out`, {
       method: "GET",
       headers: {
