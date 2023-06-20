@@ -133,10 +133,10 @@ module.exports.logout = async (req, res) => {
     //     httpOnly: false,
     // })
     res.clearCookie("jwt");
-    if(req.cookies.jwt){
-      res.clearCookie("jwt");
-      res.cookie('jwt','')
-    }
+    // if(req.cookies.jwt){
+    //   res.clearCookie("jwt");
+    //   res.cookie('jwt','')
+    // }
       console.log("Logout Done");
       return res.status(200).json({
         message: "Logout sucess",
