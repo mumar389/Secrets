@@ -113,7 +113,7 @@ module.exports.googleHome = async (req, res) => {
 };
 module.exports.logout = async (req, res) => {
   try {
-    req.logout(async () => {
+    // req.logout(async () => {
       /*
       if (err) {
         console.log("Error",err);
@@ -128,16 +128,16 @@ module.exports.logout = async (req, res) => {
         });
       }
       */
-      res.cookie('jwt', 'none', {
-        expires: new Date(Date.now() + 5 * 100),
-        httpOnly: false,
-    })
+    //   res.cookie('jwt', 'none', {
+    //     expires: new Date(Date.now() + 5 * 100),
+    //     httpOnly: false,
+    // })
     res.clearCookie("jwt");
     console.log("Logout Done");
       return res.status(200).json({
         message: "Logout sucess",
       });
-    });
+    // });
   } catch (error) {
     console.log(error);
     return res.status(200).json({

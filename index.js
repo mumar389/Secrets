@@ -19,26 +19,16 @@ app.use(cors());
 
 app.use(express.json());
 
-app.use(session({
-  secret: `${process.env.SECRET}`,
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true }
-}));
+// app.use(session({
+//   secret: `${process.env.SECRET}`,
+//   resave: false,
+//   saveUninitialized: true,
+//   cookie: { secure: true }
+// }));
 app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.session());
 app.use("/api", require("./routes/api/index"));
 
-// if (process.env.MODE == "production") {
-//   //serving all the statick files like main.js,main.css-:
-//   app.use(express.static(path.resolve(__dirname, "client", "build")));
-
-//   //express will serve up the index.html file if routes doesnot match-:
-//   app.get("*", (req, res) => {
-//     // console.log("Inside me");
-//     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-//   });
-// }
 app.use(express.static(path.resolve(__dirname, "client", "build")));
 
 //express will serve up the index.html file if routes doesnot match-:
