@@ -8,6 +8,7 @@ const GoogleStrategy = require("./config/passport-google-oauth20");
 const session = require("express-session");
 const LocalStrategy = require("./config/passport-local");
 const path = require("path");
+let cookieParser = require("cookie-parser");
 const app = express();
 /*
 if (process.env.MODE == "production") {
@@ -16,7 +17,7 @@ if (process.env.MODE == "production") {
 */
 const cors = require("cors");
 app.use(cors());
-
+app.use(cookieParser())
 app.use(express.json());
 
 // app.use(session({
