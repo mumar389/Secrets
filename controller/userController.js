@@ -121,8 +121,9 @@ module.exports.logout = async (req, res) => {
       });
     }else{
       // res.clearCookie("jwt");
-      clearCookie('jwt');
-      console.log("Logout Done");
+      res.clearCookie('jwt');
+      res.cookie('jwt' , '', {expire : new Date() + 100});
+      console.log("Logout Done",req.cookies);
       return res.status(200).json({
         message: "Logout sucess",
       });
