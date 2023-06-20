@@ -12,7 +12,7 @@ router.get('/sign-out',userControl.logout)
 router.get('/auth/google',
 passport.authenticate('google', { scope: ['profile','email'] }));
 router.get('/auth/google/google-home',passport.authenticate('google',{session: false,
-    failureRedirect:'https://secrets-mrop.onrender.com/'}),userControl.googleHome);
+    failureRedirect:'https://secrets-web.vercel.app/'}),userControl.googleHome);
 router.use('/secret',require('./secret'));
 //handling feedback submit-:
 router.post('/save-feedback',userControl.saveFeedback);

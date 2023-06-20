@@ -113,7 +113,7 @@ module.exports.googleHome = async (req, res) => {
 };
 module.exports.logout = async (req, res) => {
   try {
-    // req.logout(async (err,user) => {
+    req.logout(async (err,user) => {
       /*
       if (err) {
         console.log("Error",err);
@@ -132,6 +132,12 @@ module.exports.logout = async (req, res) => {
     //     expires: new Date(Date.now() + 5 * 100),
     //     httpOnly: false,
     // })
+    if (err) {
+      console.log("Error",err);
+      return res.status(501).json({
+        message: "Failed to logout",
+      });
+    }
     res.clearCookie("jwt");
     // if(req.cookies.jwt){
     //   res.clearCookie("jwt");
@@ -141,11 +147,11 @@ module.exports.logout = async (req, res) => {
       return res.status(200).json({
         message: "Logout sucess",
       });
-    // });
+    });
   } catch (error) {
     console.log(error);
-    return res.status(200).json({
-      message: "Logout sucess",
+    return res.status(500).json({
+      message: "Internal Server Error",
     });
   }
 };

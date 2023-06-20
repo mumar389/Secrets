@@ -4,15 +4,15 @@ import { useCookies } from "react-cookie";
 // import { base_url } from "../url";
 const Navbar = () => {
   const [cookies] = useCookies();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const handleLogout = async (e) => {
     e.preventDefault();
-    cookies.remove('jwt', {
-      path: '/',
-    });
-      window.open(`/`, "_self");
+    // cookies.remove('jwt', {
+    //   path: '/',
+    // });
+      // window.open(`/`, "_self");
     
-    /*
+    
     const res = await fetch(`/api/v1/sign-out`, {
       method: "GET",
       headers: {
@@ -20,15 +20,21 @@ const Navbar = () => {
         Authorization: `Bearer ${cookies.jwt}`,
       },
     });
-    if (!(res.status === 200)) {
+    if(res.status===500){
+      console.log("Internal Server Error");
+    }
+    else if (!(res.status === 200) && !(res.status===500)) {
       console.log("Error in log out");
-      navigate("/");
+      const resp=await res.json();
+      const {message}=resp
+      alert(message)
+      // navigate("/");
     } else {
       window.alert("Logout Sucessfull");
       // window.open(`${base_url}/sign-in`, "_self");
       navigate("/");
     }
-    */
+    
   };
   return (
     <div>
