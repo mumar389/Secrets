@@ -114,39 +114,19 @@ module.exports.googleHome = async (req, res) => {
 module.exports.logout = async (req, res) => {
   try {
     req.logout(async (err,user) => {
-      /*
-      if (err) {
-        console.log("Error",err);
-        return res.status(501).json({
-          message: "Failed to logout",
-        });
-      } else {
-        console.log("Users",users);
-        res.clearCookie("jwt");
-        return res.status(200).json({
-          message: "Logout sucess",
-        });
-      }
-      */
-    //   res.cookie('jwt', 'none', {
-    //     expires: new Date(Date.now() + 5 * 100),
-    //     httpOnly: false,
-    // })
     if (err) {
       console.log("Error",err);
       return res.status(501).json({
         message: "Failed to logout",
       });
-    }
-    res.clearCookie("jwt");
-    // if(req.cookies.jwt){
-    //   res.clearCookie("jwt");
-    //   res.cookie('jwt','')
-    // }
+    }else{
+      // res.clearCookie("jwt");
+      clearCookie('jwt');
       console.log("Logout Done");
       return res.status(200).json({
         message: "Logout sucess",
       });
+    }
     });
   } catch (error) {
     console.log(error);
