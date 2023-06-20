@@ -8,7 +8,7 @@ const passport=require('passport')
 router.post('/create',userControl.create);
 router.post('/create-session',userControl.createSession);
 router.get('/verify-user',passport.authenticate('jwt', { session: false }),userControl.verifyUser);
-router.get('/sign-out',passport.authenticate('jwt','google', { session: false }),userControl.logout)
+router.get('/sign-out',userControl.logout)
 router.get('/auth/google',
 passport.authenticate('google', { scope: ['profile','email'] }));
 router.get('/auth/google/google-home',passport.authenticate('google',{session: false,
@@ -18,3 +18,4 @@ router.use('/secret',require('./secret'));
 router.post('/save-feedback',userControl.saveFeedback);
 
 module.exports=router;
+//passport.authenticate('jwt','google', { session: false })
