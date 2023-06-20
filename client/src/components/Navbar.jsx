@@ -4,10 +4,12 @@ import { useCookies } from "react-cookie";
 // import { base_url } from "../url";
 const Navbar = () => {
   const [cookies] = useCookies();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const handleLogout = async (e) => {
     e.preventDefault();
-    cookies.remove('jwt')
+    cookies.remove('jwt', {
+      path: '/',
+    });
       window.open(`/`, "_self");
     
     /*
