@@ -64,7 +64,17 @@ const Login = () => {
   const googleAuth = async (e) => {
     try {
       e.preventDefault();
-      window.open(`/api/v1/auth/google`, "_self");
+      const res=await fetch("/api/v1/auth/google",{
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      if(res.status===200){
+        const data=await res.json()
+        console.log(data);
+        window.open('/secret-page',"_self")
+      }
+      // window.open(`/api/v1/auth/google`, "_self");
     } catch (error) {
       console.log("error--:", error);
       navigate("/sign-in");

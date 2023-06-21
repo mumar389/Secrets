@@ -104,12 +104,13 @@ module.exports.googleHome = async (req, res) => {
     expiresIn: "10000000",
   });
   res.cookie("jwt", token);
-  // if (process.env.MODE === "production")
-  // return res.redirect("https://secrets-web.vercel.app/secret-page");
-  return res.redirect("/");
-  // else {
-  // return res.redirect("http://localhost:3000/secret-page");
-  // }
+
+  // return res.redirect("/");
+  return res.status(200).json({
+    message:"Login Successfull",
+    data:token
+  })
+
 };
 module.exports.logout = async (req, res) => {
   try {
