@@ -10,6 +10,7 @@ import Contact from "./components/Contact";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 // import Logout from "./components/Logout";
 import Protected from "./components/Protected";
+import Google from "./components/Google";
 function App() {
   return (
     <div className="App">
@@ -24,10 +25,10 @@ function App() {
             element={<Protected Component={Secret} />}
           />
           <Route exact path="/secret-form" element={<Protected Component={Form} />} />
+          <Route exact path="/google-login/query" element={<Google />} />
           <Route exact path="/sign-up" element={<Register />} />
           <Route exact path="/about" element={<About />} />
           <Route exact path="/contact" element={<Contact />} />
-          {/* <Route exact path="/log-out" element={<Logout />} /> */}
         </Routes>
       </BrowserRouter>
     </div>

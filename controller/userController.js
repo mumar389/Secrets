@@ -104,12 +104,12 @@ module.exports.googleHome = async (req, res) => {
     expiresIn: "10000000",
   });
   res.cookie("jwt", token);
-
-  // return res.redirect("/");
-  return res.status(200).json({
-    message:"Login Successfull",
-    data:token
-  })
+  const FRONTEND_URL='/google-login'
+  return  res.redirect(FRONTEND_URL + '?token=' + token);
+  // return res.status(200).json({
+  //   message:"Login Successfull",
+  //   data:token
+  // })
 
 };
 module.exports.logout = async (req, res) => {
