@@ -1,8 +1,13 @@
 import React from 'react'
 
 const Google = () => {
+  console.log("GOT me");
   return (
-    <div>Google me aaya toh</div>
+    <div className="jumbotron text-center">
+    <div className="container">
+    <h1>Got Me</h1>
+    </div>
+    </div>
   )
 }
 
